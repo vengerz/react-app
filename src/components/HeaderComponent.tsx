@@ -28,10 +28,13 @@ import {
     IconFingerprint,
     IconCoin,
     IconChevronDown,
+    IconPawFilled,
   } from '@tabler/icons-react';
   import {BrowserRouter , Route , Routes , NavLink} from "react-router-dom"
 import HomePage from '../pages/Home';
 import ServicesPage from '../pages/Services';
+import ContactPage from '../pages/Contact';
+import SignupPage from '../pages/Signup';
   const useStyles = createStyles((theme) => ({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     link: {
@@ -156,7 +159,7 @@ import ServicesPage from '../pages/Services';
         <Header height={60} px="md">
           <Group position="apart" sx={{ height: '100%' }}>
             <Group>
-              <Image width={50} src={"https://assets.stickpng.com/images/58568d4c4f6ae202fedf2721.png"}/>
+              <Image width={50} src={"https://w7.pngwing.com/pngs/406/821/png-transparent-giant-panda-panda-white-mammal-animals.png"}/>
               <Text
                 variant="gradient"
                 gradient={{ from: 'black', to: 'gold', deg: 45 }}
@@ -220,14 +223,16 @@ import ServicesPage from '../pages/Services';
               <NavLink to ="/Services" className={classes.link}>
                 Services
               </NavLink>
-              <a href="#" className={classes.link}>
+              <NavLink to = "/Contact" className={classes.link}>
                 Contrtact
-              </a>
+              </NavLink>
             </Group>
   
             <Group className={classes.hiddenMobile}>
               <Button variant="default">Log in</Button>
-              <Button variant="gradient" gradient={{ from: 'black', to: 'gold',deg: 60}}>Sign up</Button>
+              <NavLink to ="/Signup" className={classes.link}>
+                <Button variant="gradient" leftIcon ={<IconPawFilled/>} gradient={{ from: 'black', to: 'gold',deg: 60}}>Sign up</Button>
+              </NavLink>
             </Group>
   
             <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
@@ -277,6 +282,8 @@ import ServicesPage from '../pages/Services';
       <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/Services' element={<ServicesPage/>}/>
+      <Route path='/Contact' element={<ContactPage/>}/>
+      <Route path='/Signup' element={<SignupPage/>}/>
       </Routes>
       </BrowserRouter>  
     );
