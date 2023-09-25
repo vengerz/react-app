@@ -9,8 +9,11 @@ import {
   Box,
   PasswordInput,
 } from "@mantine/core";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function RegisterComponent() {
+  const navigate = useNavigate();
   const form = useForm({
     initialValues: {
       name: "",
@@ -18,6 +21,7 @@ function RegisterComponent() {
       age: 0,
       password: "",
       confirmPassword: "",
+      picture:"",
     },
 
     validate: {
@@ -33,7 +37,23 @@ function RegisterComponent() {
   return (
     <Container>
       <Box maw={450} mx="auto">
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onSubmit={form.onSubmit(async (values) => {
+          const response = await axios.post(
+            "http://localhost/phpapi/member.php",
+            {
+              fullname: values.name,
+              email:values.email,
+              age: Number(values.age),
+              picture: values.picture,
+              password: values.password,
+            }
+          );
+          alert("บันทึกข้อมูลเรียบร้อย");
+          navigate("/Client"); //กลับไปหน้า client
+        })}
+        >
           <TextInput
             withAsterisk
             label="Name"
@@ -54,7 +74,9 @@ function RegisterComponent() {
             {...form.getInputProps("age")}
           />
           <TextInput type="text" 
-          withAsterisk label="รูปภาพ" />
+          withAsterisk label="รูปภาพ" 
+          placeholder="URL"
+          {...form.getInputProps("picture")}/>
           <PasswordInput
             label="Password"
             placeholder="Password"

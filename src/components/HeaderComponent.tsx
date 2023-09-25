@@ -36,6 +36,9 @@ import ServicesPage from "../pages/Services";
 import ContactPage from "../pages/Contact";
 import SignupPage from "../pages/Signup";
 import ClientPage from "../pages/Client";
+import ViewUser from "./ViewUser";
+import ViewUserComponent from "./ViewUser";
+import EditUser from "./EditUser";
 const useStyles = createStyles((theme) => ({
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   link: {
@@ -333,6 +336,8 @@ export function HeaderComponent() {
         <Route path="/Contact" element={<ContactPage />} />
         <Route path="/Signup" element={<SignupPage />} />
         <Route path="/Client" element={<ClientPage />} />
+        <Route path="/Client/:id" element={<ViewUserComponent />} />
+        <Route path="/edit/:id" element={<EditUser />} />
       </Routes>
     </BrowserRouter>
   );
