@@ -66,7 +66,7 @@ function EditUser() {
                   }
                 );
                 alert("บันทึกข้อมูลเรียบร้อย");
-                navigate("/clients");
+                navigate("/client");
               })}
             >
               <TextInput
